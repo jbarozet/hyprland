@@ -1,27 +1,23 @@
 #!/bin/bash
 
-# Script pulled and updated from [soldoestech]((https://github.com/soldoestech/hyprland)
-
-# The follwoing will attempt to install all needed packages to run Hyprland
-# This is a quick and dirty script there are no error checking
+# Quick and dirty script to install hyprland
 # This script is meant to run on a clean fresh system
 #
-# Below is a list of the packages that would be installed
+# Packages:
 #
 # hyprland-bin: This is the Hyprland compositor
-# kitty: This is the default terminal
 # waybar-hyprland: This is a fork of waybar with Hyprland workspace support
 # swaybg: This is used to set a desktop background image
 # swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
 # wofi: This is an application launcher menu
 # wlogout: This is a logout menu that allows for shutdown, reboot and sleep
 # mako: This is a graphical notification daemon
+# kitty: This is the default terminal
 # thunar: This is a graphical file manager
-# ttf-jetbrains-mono-nerd: Som nerd fonts for icons and overall look
+# ttf-jetbrains-mono-nerd: nerd fonts for icons and overall look
 # noto-fonts-emoji: fonts needed by the weather script in the top bar
 # polkit-gnome: needed to get superuser access on some graphical appliaction
 # python-requests: needed for the weather module script to execute
-# starship: allows to customize the shell prompt
 # swappy: This is a screenshot editor tool
 # grim: This is a screenshot tool it grabs images from a Wayland compositor
 # slurp: This helps with screenshots, it selects a region in a Wayland compositor
@@ -58,7 +54,7 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
 	sleep 3
 fi
 
-### Install all of the above pacakges ####
+### Install all of the above packages ####
 read -n1 -rep 'Would you like to install the packages? (y,n)' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
 	yay -S --noconfirm hyprland-bin kitty waybar-hyprland \
@@ -93,31 +89,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 	# Set some files as exacutable
 	chmod +x ~/.config/hypr/xdg-portal-hyprland
 	chmod +x ~/.config/waybar/scripts/waybar-wttr.py
-fi
-
-### Install software for Asus ROG laptops ###
-read -n1 -rep 'Would you like to install Asus ROG software support? (y,n)' ROG
-if [[ $ROG == "Y" || $ROG == "y" ]]; then
-	echo -e "Adding Keys... \n"
-	sudo pacman-key --recv-keys 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-	sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-	sudo pacman-key --lsign-key 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-	sudo pacman-key --finger 8F654886F17D497FEFE3DB448B15A6B0E9A3FA35
-
-	LOC="/etc/pacman.conf"
-	echo -e "Updating $LOC with g14 repo.\n"
-	echo -e "\n[g14]\nServer = https://arch.asus-linux.org" | sudo tee -a $LOC
-	echo -e "\n"
-	echo -e "Update the system...\n"
-	sudo pacman -Suy
-
-	echo -e "Installing ROG packages...\n"
-	sudo pacman -S --noconfirm asusctl supergfxctl rog-control-center
-	echo -e "Activating ROG services...\n"
-	sudo systemctl enable --now power-profiles-daemon.service
-	sleep 2
-	sudo systemctl enable --now supergfxd
-	sleep 2
 fi
 
 ### Script is done ###
