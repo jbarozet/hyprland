@@ -4,13 +4,22 @@
 # This script is meant to run on a clean fresh system
 #
 
+# set some colors
+CNT="[\e[1;36mNOTE\e[0m]"
+COK="[\e[1;32mOK\e[0m]"
+CER="[\e[1;31mERROR\e[0m]"
+CAT="[\e[1;37mATTENTION\e[0m]"
+CWR="[\e[1;35mWARNING\e[0m]"
+CAC="[\e[1;33mACTION\e[0m]"
+INSTLOG="install.log"
+
 #### Check for yay ####
 ISYAY=/sbin/yay
 if [ -f "$ISYAY" ]; then
-	echo -e "yay was located, moving on.\n"
+	echo -e "$COK - yay was located, moving on."
 	yay -Suy
 else
-	echo -e "yay was not located, please install yay. Exiting script.\n"
+	echo -e "$CWR - Yay was NOT located, please install yay. Exiting script.\n",
 	exit
 fi
 
@@ -27,31 +36,30 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
 fi
 
 ### Install all of the above packages ####
-read -n1 -rep 'Would you like to install the packages? (y,n)' INST
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
-	yay -S --noconfirm hyprland-git waybar-hyprland libdisplay-info-git \
-		swaybg swaylock-effects wofi wlogout xdg-desktop-portal-hyprland-git \
-		ttf-jetbrains-mono-nerd noto-fonts-emoji \
-		polkit-gnome python-requests \
-		swappy grim slurp pamixer brightnessctl gvfs \
-		bluez bluez-utils lxappearance xfce4-settings \
-		kitty mako thunar \
-		dracula-gtk-theme dracula-icons-git
+	#Stage 1
+	echo -e "\n$CNT - Stage 1 - Installing main components, this may take a while..."
+	yay -S --noconfirm --needed $(cat DEPENDENCIES_MAIN)
 
-	# Start the bluetooth service
-	echo -e "Starting the Bluetooth Service...\n"
-	sudo systemctl enable --now bluetooth.service
-	sleep 2
+	#Stage 2
+	echo -e "\n$CNT - Stage 2 - Installing additional tools and utilities, this may take a while..."
+	yay -S --noconfirm --needed $(cat DEPENDENCIES_TOOLS)
+
+	#Stage 3
+	echo -e "\n$CNT - Stage 3 - Installing theme, this may take a while..."
+	yay -S --noconfirm --needed $(cat DEPENDENCIES_THEME)
 
 	# Clean out other portals
-	echo -e "Cleaning out conflicting xdg portals...\n"
+	echo -e "$CNT - Cleaning out conflicting xdg portals..."
 	yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+
 fi
 
 ### Copy Config Files ###
-read -n1 -rep 'Would you like to copy config files? (y,n)' CFG
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
-	echo -e "Copying config files...\n"
+	echo -e "$CNT - Copying config files...\n"
 	cp -R hypr ~/.config/
 	cp -R kitty ~/.config/
 	cp -R mako ~/.config/
@@ -60,16 +68,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 	cp -R wofi ~/.config/
 
 	# Set some files as exacutable
-	chmod +x ~/.config/hypr/xdg-portal-hyprland
+	chmod +x ~/.config/hypr/xdg-portal-kill
 	chmod +x ~/.config/waybar/scripts/waybar-wttr.py
 fi
 
 ### Script is done ###
-echo -e "Script had completed.\n"
+echo -e "$CNT - Script had completed!\n"
 echo -e "You can start Hyprland by typing Hyprland (note the capital H).\n"
-read -n1 -rep 'Would you like to start Hyprland now? (y,n)' HYP
-if [[ $HYP == "Y" || $HYP == "y" ]]; then
-	exec Hyprland
-else
-	exit
-fi
+
+#---END---

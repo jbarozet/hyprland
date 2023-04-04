@@ -4,6 +4,11 @@
 
 Install script for the Window Manager called hyprland. Use the script called **install-hyprland**.
 
+Note: 
+- This is a very basic gory script that I used to setup my initial hyprland. 
+- yay has to be installed.
+- Config files are copied and no backup of existing is performed. Make sure you backup your config files first.
+
 Check [My guide to Arch Installation](https://github.com/jbarozet/guide-archlinux) to install Arch Linux.
 
 
