@@ -3,34 +3,6 @@
 # Quick and dirty script to install hyprland
 # This script is meant to run on a clean fresh system
 #
-# Packages:
-#
-# hyprland-bin: This is the Hyprland compositor
-# waybar-hyprland: This is a fork of waybar with Hyprland workspace support
-# swaybg: This is used to set a desktop background image
-# swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
-# wofi: This is an application launcher menu
-# wlogout: This is a logout menu that allows for shutdown, reboot and sleep
-# mako: This is a graphical notification daemon
-# kitty: This is the default terminal
-# thunar: This is a graphical file manager
-# ttf-jetbrains-mono-nerd: nerd fonts for icons and overall look
-# noto-fonts-emoji: fonts needed by the weather script in the top bar
-# polkit-gnome: needed to get superuser access on some graphical appliaction
-# python-requests: needed for the weather module script to execute
-# swappy: This is a screenshot editor tool
-# grim: This is a screenshot tool it grabs images from a Wayland compositor
-# slurp: This helps with screenshots, it selects a region in a Wayland compositor
-# pamixer: This helps with audio settings such as volume
-# brightnessctl: used to control monitor bright level
-# gvfs: adds missing functionality to thunar such as automount usb drives
-# bluez: the bluetooth service
-# bluez-utils: command line utilities to interact with bluettoth devices
-# lxappearance: used to set GTK theme
-# xfce4-settings: set of tools for xfce, needed to set GTK theme
-# dracula-gtk-theme: the Dracula theme, it fits the overall look and feel
-# dracula-icons-git" set of icons to go with the Dracula theme
-# xdg-desktop-portal-hyprland-git: xdg-desktop-portal backend for hyprland
 
 #### Check for yay ####
 ISYAY=/sbin/yay
@@ -57,13 +29,14 @@ fi
 ### Install all of the above packages ####
 read -n1 -rep 'Would you like to install the packages? (y,n)' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
-	yay -S --noconfirm hyprland-bin kitty waybar-hyprland \
-		swaybg swaylock-effects wofi wlogout mako thunar \
+	yay -S --noconfirm hyprland-git waybar-hyprland libdisplay-info-git \
+		swaybg swaylock-effects wofi wlogout xdg-desktop-portal-hyprland-git \
 		ttf-jetbrains-mono-nerd noto-fonts-emoji \
-		polkit-gnome python-requests starship \
+		polkit-gnome python-requests \
 		swappy grim slurp pamixer brightnessctl gvfs \
 		bluez bluez-utils lxappearance xfce4-settings \
-		dracula-gtk-theme dracula-icons-git xdg-desktop-portal-hyprland-git
+		kitty mako thunar \
+		dracula-gtk-theme dracula-icons-git
 
 	# Start the bluetooth service
 	echo -e "Starting the Bluetooth Service...\n"
