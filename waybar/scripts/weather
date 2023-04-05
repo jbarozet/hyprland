@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#echo
+#echo -n "Enter a city: "
+#read city
+
+city="Uzes"
+
+curl -sf "wttr.in/$city"
+
+read ans
+
+#w3m "wttr.in/Uzes"
+
+#curl -sf "wttr.in/paris"
+#curl -sf "wttr.in/uzes"
