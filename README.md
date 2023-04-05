@@ -2,7 +2,9 @@
 
 ## Overview
 
-Install script for the Window Manager called hyprland. Use the script called **install-hyprland**.
+Install script for the Window Manager called hyprland. 
+
+Go to **install** folder and use the script called **install-hyprland**.
 
 Note: 
 - This is a very basic gory script that I used to setup my initial hyprland. 
@@ -12,11 +14,18 @@ Note:
 Check [My guide to Arch Installation](https://github.com/jbarozet/guide-archlinux) to install Arch Linux.
 
 
-## If Gnome is also used
+## Waybar
 
-If you use Gnome, you have to copy Hyperland Desktop entry to add an Hyperland menu entry in the logging manager (GDM):
+- **pacman-contrib**: to have checkupdates (used in the update-sys widget)
+- **python-requests**: needed for the weather module script to execute
 
-`sudo cp hyprland.desktop /usr/share/wayland-sessions`
+
+
+##  GDM or SDDM
+
+You have to copy Hyprland Desktop entry to add an Hyprland menu entry in the logging manager:
+
+`sudo cp extras/hyprland.desktop /usr/share/wayland-sessions`
 
 
 ## Packages
