@@ -123,7 +123,8 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%I:%M %p}",
+    //"format": "{:%I:%M %p}",
+    "format": "{:%d-%m-%Y | %I:%M %p}",
     "tooltip": true,
     "tooltip-format": "{: %A, %B %e %Y}"
   },
