@@ -7,7 +7,7 @@
   "gtk-layer-shell": true,
   "height": 50,
   "modules-left": [
-    "custom/launch_wofi",
+    "custom/launch_rofi",
     "wlr/workspaces",
     "cpu",
     "memory",
@@ -35,9 +35,9 @@
   "hyprland/window": {
     "format": "{}"
   },
-  "custom/launch_wofi": {
+  "custom/launch_rofi": {
     "format": "",
-    "on-click": "pkill wofi; wofi -n",
+    "on-click": "/home/jmb/.config/rofi/scripts/launcher_t2",
     "tooltip": false
   },
   "custom/lock_screen": {
@@ -52,7 +52,7 @@
   },
   "custom/power_btn": {
     "format": "",
-    "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
+    "on-click": "/home/jmb/.config/rofi/scripts/powermenu_t2",
     "tooltip": false
   },
   "cpu": {

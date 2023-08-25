@@ -25,7 +25,10 @@ Check [My guide to Arch Installation](https://github.com/jbarozet/guide-archlinu
 
 You have to copy Hyprland Desktop entry to add an Hyprland menu entry in the logging manager:
 
-`sudo cp extras/hyprland.desktop /usr/share/wayland-sessions`
+``` shell
+sudo cp extras/hyprland.desktop /usr/share/wayland-sessions
+```
+
 
 
 ## Packages
@@ -35,7 +38,8 @@ You have to copy Hyprland Desktop entry to add an Hyprland menu entry in the log
 - waybar-hyprland: This is a fork of waybar with Hyprland workspace support
 - swaybg: This is used to set a desktop background image
 - swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
-- wofi: This is an application launcher menu
+- wofi: This is an application launcher menu (not using it anymore, using rofi instead)
+- rofi: this is an application launcher menu
 - wlogout: This is a logout menu that allows for shutdown, reboot and sleep
 - mako: This is a graphical notification daemon
 - kitty: This is the default terminal
@@ -48,6 +52,7 @@ You have to copy Hyprland Desktop entry to add an Hyprland menu entry in the log
 - grim: This is a screenshot tool it grabs images from a Wayland compositor
 - slurp: This helps with screenshots, it selects a region in a Wayland compositor
 - pamixer: This helps with audio settings such as volume
+- pavucontrol: audio setup
 - brightnessctl: used to control monitor bright level
 - gvfs: adds missing functionality to thunar such as automount usb drives
 - bluez: the bluetooth service
@@ -55,6 +60,4 @@ You have to copy Hyprland Desktop entry to add an Hyprland menu entry in the log
 - lxappearance: used to set GTK theme
 - xfce4-settings: set of tools for xfce, needed to set GTK theme
 - dracula-gtk-theme: the Dracula theme, it fits the overall look and feel
-- dracula-icons-git" set of icons to go with the Dracula theme
-
-
+- dracula-icons-git: set of icons to go with the Dracula theme

@@ -53,7 +53,7 @@ tooltip label{
     border-radius: 10px;
 }
 
-#custom-launch_wofi,
+#custom-launch_rofi,
 #custom-lock_screen,
 #custom-light_dark,
 #custom-power_btn,
@@ -82,13 +82,18 @@ tooltip label{
     border: 0px;
 }
 
-#tray, #custom-lock_screen, #network, #custom-weather, #custom-launch_wofi, #cpu {
+#tray, #network, #custom-weather, #custom-launch_rofi, #cpu {
     border-radius: 10px 0px 0px 10px;
 }
 
-#custom-light_dark, #custom-power_btn, #workspaces, #pulseaudio.microphone, #battery, #disk {
+#custom-lock_screen, #custom-light_dark, #custom-power_btn, #workspaces, #pulseaudio.microphone, #battery, #disk {
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px;
+}
+
+#custom-lock_screen {
+    border-radius: 10px 0px 0px 10px;
+    margin-right: 0px;
 }
 
 #temperature.critical {
@@ -113,7 +118,7 @@ tooltip label{
     margin-right: 20px;
 }
 
-#custom-launch_wofi {
+#custom-launch_rofi {
     color: #89b4fa;
     margin-left: 10px;
     border-right: 0px;
